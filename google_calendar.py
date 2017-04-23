@@ -12,7 +12,7 @@ import datetime
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/calendar-python-quickstart.json
 SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
-CLIENT_SECRET_FILE = 'client_secret.json'
+CLIENT_SECRET_FILE = '~/home_agent/client_secret.json'
 APPLICATION_NAME = 'Google Calendar API Python Quickstart'
 
 try:
@@ -42,7 +42,8 @@ def get_credentials():
     store = Storage(credential_path)
     credentials = store.get()
     if not credentials or credentials.invalid:
-        flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
+        file_path = os.path.expanduser(CLIENT_SECRET_FILE)
+        flow = client.flow_from_clientsecrets(file_path, SCOPES)
         flow.user_agent = APPLICATION_NAME
         if flags:
             credentials = tools.run_flow(flow, store, flags)
