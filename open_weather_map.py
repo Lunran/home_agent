@@ -3,12 +3,12 @@ parser = argparse.ArgumentParser()
 parser.add_argument('day', choices=['today', 'tomorrow'], help='day to check the weather forcast')
 args = parser.parse_args()
 
-API_KEY_FILE = 'owm_key.txt'
+API_KEY_FILE = '~/home_agent/owm_key.txt'
 
 def get_credential():
     import os
     try:
-        file_path = os.path.expanduser('~/home_agent/' + API_KEY_FILE)
+        file_path = os.path.expanduser(API_KEY_FILE)
         api_key_file = open(file_path, 'r')
     except IOError:
         print('Please create {0}'.format(file_path))

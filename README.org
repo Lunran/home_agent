@@ -5,7 +5,7 @@ Scripts and programs for home automation. (supposed to be used in Raspberry Pi)
 
 * What can they do?
 
-- Get upcoming schedule events from Google Calendar
+- Get upcoming scheduled events from Google Calendar
 - Get weather forcast from Open Weather Map
 - Speek out the information
 
@@ -29,20 +29,25 @@ Scripts and programs for home automation. (supposed to be used in Raspberry Pi)
   - $ sudo apt-get install espeak python-espeak
   - $ sudo gpasswd -a USERNAME audio
 
+- Git (not required if you manually download the scripts)
+  - $ sudo apt-get install git
+
+
 ** Installation
 
-- Get scripts and programs
+- Get scripts
   - $ cd
   - $ git clone https://github.com/Lunran/home_agent
 
 - Test scripts
-  - (Replace USERNAME with your actual user name)
-  - $ python /home/USERNAME/home_agent/google_calendar.py today
-  - $ python /home/USERNAME/home_agent/open_weather_map.py today
-  - $ python /home/USERNAME/home_agent/speak.py today
+  - $ python /home/`whoami`/home_agent/google_calendar.py --noauth_local_webserver today
+    - -> Follow the instruction and make sure today's scheduled events are displayed
+  - $ python /home/`whoami`/home_agent/open_weather_map.py today
+    - -> Make sure today's weather forcast is displayed
+  - $ python /home/`whoami`/home_agent/speak.py today
+    - -> Make sure today's scheduled events and weather forcast are spoken
 
 - Create cron job
-  - (Replace USERNAME with your actual user name)
   - $ crontab -e
-    - 0 8 * * * python /home/USERNAME/home_agent/speak.py today
-    - 0 21 * * * python /home/USERNAME/home_agent/speak.py tomorrow
+    - 0 8 * * * python /home/`whoami`/home_agent/speak.py today
+    - 0 21 * * * python /home/`whoami`/home_agent/speak.py tomorrow
