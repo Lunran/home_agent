@@ -1,0 +1,48 @@
+* What's this?
+
+Scripts and programs for home automation. (supposed to be used in Raspberry Pi)
+
+
+* What can they do?
+
+- Get upcoming schedule events from Google Calendar
+- Get weather forcast from Open Weather Map
+- Speek out the information
+
+
+* How can I use them?
+
+** Requirement
+
+- Python 2.6 or greater
+  - not tested with Python 3
+
+- Google Calendar API
+  - ref. https://developers.google.com/google-apps/calendar/quickstart/python?hl=ja
+
+- PyOWM
+  - ref. https://github.com/csparpa/pyowm
+
+- ESpeak
+  - ref. http://nullege.com/codes/search/espeak.espeak
+  - (Replace USERNAME with your actual user name)
+  - $ sudo apt-get install espeak python-espeak
+  - $ sudo gpasswd -a USERNAME audio
+
+** Installation
+
+- Get scripts and programs
+  - $ cd
+  - $ git clone https://github.com/Lunran/home_agent
+
+- Test scripts
+  - (Replace USERNAME with your actual user name)
+  - $ python /home/USERNAME/home_agent/google_calendar.py today
+  - $ python /home/USERNAME/home_agent/open_weather_map.py today
+  - $ python /home/USERNAME/home_agent/speak.py today
+
+- Create cron job
+  - (Replace USERNAME with your actual user name)
+  - $ crontab -e
+    - 0 8 * * * python /home/USERNAME/home_agent/speak.py today
+    - 0 21 * * * python /home/USERNAME/home_agent/speak.py tomorrow
