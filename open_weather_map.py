@@ -6,10 +6,12 @@ args = parser.parse_args()
 API_KEY_FILE = 'owm_key.txt'
 
 def get_credential():
+    import os
     try:
-        api_key_file = open(API_KEY_FILE, 'r')
-    except FileNotFoundError:
-        print('Please put {0} in the same directory'.format(API_KEY_FILE))
+        file_path = os.path.expanduser('~/home_agent/' + API_KEY_FILE)
+        api_key_file = open(file_path, 'r')
+    except IOError:
+        print('Please create {0}'.format(file_path))
         quit()
     with api_key_file:
         return api_key_file.readline().strip()
